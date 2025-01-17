@@ -1,0 +1,60 @@
+<section class="section-gestion-technologies">
+
+    <div >
+        <h3>Ajouter une Technologie</h3>
+        <div class="gestion-technologies-form">
+
+            {% if not edit_technologie_id %}
+                {{ form_start(form_technologie) }}
+                {{ form_widget(form_technologie) }}
+                <div class="action">
+                    <button type="submit" class="btn-submit">Ajouter</button>
+                </div>
+                {{ form_end(form_technologie) }}
+            {% endif %}
+        </div>
+    </div>
+    
+    <div>
+
+        <h3>Liste des Technologies</h3>
+        <ul class="technologies-list">
+            {% if technologies is defined and technologies is not empty %}
+                {% for technologie in technologies %}
+                    <li class="technologie-item">
+                        {{ technologie.nom }}
+                        <div>
+                            {% if technologie.id == edit_technologie_id %}
+                                {% if form_edit_technologie is defined and form_edit_technologie is not null %}
+                                    {{ form_start(form_edit_technologie) }}
+                                    {{ form_widget(form_edit_technologie) }}
+                                    <div class="action">
+                                        <button type="submit" class="btn-submit">Enregistrer</button>
+                                    </div>
+                                    {{ form_end(form_edit_technologie) }}
+                                {% else %}
+                                    <p>Formulaire d'édition introuvable.</p>
+                                {% endif %}
+                            {% else %}
+                                <div class="action">
+                                    <a href="{{ path('app_technologie_edit', {id: technologie.id}) }}" class="btn-edit">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
+            
+                            <div class="action">
+                                <a href="{{ path('app_technologie_delete', {id: technologie.id}) }}" class="btn-delete" onclick="return confirm('Supprimer cette technologie ?');">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <p>Aucune technologie trouvée.</p>
+            {% endif %}
+        </ul>
+    </div>
+</section>
+

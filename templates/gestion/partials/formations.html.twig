@@ -1,0 +1,37 @@
+
+<h3>Ajouter une Formation</h3>
+{% if not edit_formation_id %}
+    {{ form_start(form_formation) }}
+    {{ form_widget(form_formation) }}
+    <button type="submit">Ajouter</button>
+    {{ form_end(form_formation) }}
+{% endif %}
+
+<h3>Liste des Formations</h3>
+<ul>
+    {% if formations is defined and formations is not empty %}
+        {% for formation in formations %}
+            <li>
+                {{ formation.diplome }} - {{ formation.etablissement }}
+
+                {% if formation.id == edit_formation_id %}
+                    {% if form_edit_formation is defined and form_edit_formation is not null %}
+                        {{ form_start(form_edit_formation) }}
+                        {{ form_widget(form_edit_formation) }}
+                        <button type="submit">Enregistrer</button>
+                        <a href="{{ path('app_gestion') }}" class="btn btn-secondary">Annuler</a>
+                        {{ form_end(form_edit_formation) }}
+                    {% else %}
+                        <p>Formulaire d'édition introuvable.</p>
+                    {% endif %}
+                {% else %}
+                    <a href="{{ path('app_formation_edit', {id: formation.id}) }}">Modifier</a>
+                {% endif %}
+
+                <a href="{{ path('app_formation_delete', {id: formation.id}) }}" onclick="return confirm('Supprimer ce formation ?');">Supprimer</a>
+            </li>
+        {% endfor %}
+    {% else %}
+        <p>Aucun formation trouvé.</p>
+    {% endif %}
+</ul>

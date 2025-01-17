@@ -1,0 +1,47 @@
+<section class="section-gestion-centres-interets">
+    <div>
+        <h3>Ajouter un centre d'intérêt</h3>
+        {% if not edit_hobby_id %}
+            <div class="form-container">
+                {{ form_start(form_hobby) }}
+                {{ form_widget(form_hobby, {'attr': {'class': 'form-input'}}) }}
+                <button type="submit" class="btn-submit">Ajouter</button>
+                {{ form_end(form_hobby) }}
+            </div>
+        {% endif %}
+    </div>
+    
+    <div>
+        <h3>Liste des Centre d'intérêts</h3>
+        <ul class="centres-interets-list">
+            {% for hobby in centresInterets %}
+                <li class="centre-interet-item">
+                    <span class="centre-interet-nom">{{ hobby.nom }}</span>
+
+                    {% if hobby.id == edit_hobby_id %}
+                        <div class="edit-form">
+                            {% if form_edit_hobby is defined and form_edit_hobby is not null %}
+                                {{ form_start(form_edit_hobby) }}
+                                {{ form_widget(form_edit_hobby) }}
+                                <button type="submit" class="btn-save">Enregistrer</button>
+                                <a href="{{ path('app_gestion') }}" class="btn-cancel">Annuler</a>
+                                {{ form_end(form_edit_hobby) }}
+                            {% else %}
+                                <p class="error-message">Formulaire d'édition introuvable.</p>
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <div class="action">
+                            <a href="{{ path('app_hobby_edit', {id: hobby.id}) }}" class="btn-edit">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                    {% endif %}
+    
+                            <a href="{{ path('app_hobby_delete', {id: hobby.id}) }}" class="btn-delete" onclick="return confirm('Supprimer ce centre d\'intérêt ?');"><i class="fa-solid fa-trash"></i></a>
+                        </div>
+
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>

@@ -1,0 +1,95 @@
+.action {
+    display: flex;
+    justify-content: flex-end; 
+    gap: 10px; 
+    margin-top: 10px; 
+}
+
+.btn-submit, .btn-edit, .btn-delete {
+    background-color: #5bc0de;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; 
+}
+
+.btn-submit {
+    background-color: #5bc0de; 
+}
+
+.btn-submit:hover {
+    background-color: #31b0d5;
+}
+
+.btn-edit {
+    background-color: #5bc0de; 
+}
+
+.btn-edit:hover {
+    background-color: #31b0d5;
+}
+
+.btn-delete {
+    background-color: #d9534f; 
+}
+
+.btn-delete:hover {
+    background-color: #c9302c;
+}
+
+.btn-edit i, .btn-delete i {
+    font-size: 16px; 
+}
+
+
+.technologies-list {
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+}
+
+.technologie-item {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px; 
+    background-color: #faf7ef; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    padding: 15px;
+    margin: 10px 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 300px; 
+    max-width: 100%;
+}
+
+.technologie-item:hover {
+    transform: translateY(-3px); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); 
+}
+
+.section-gestion-technologies{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    gap: 40px; 
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 20px;
+}
+.section-gestion-technologies > div {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.gestion-technologies-form{
+    background-color: #faf7ef; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    padding: 30px;
+}

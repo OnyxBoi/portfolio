@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block title %}Accueil - Mon Portfolio{% endblock %}
+
+
+{% block body %}
+<h1>Accueil</h1>
+
+
+
+<div class="tabsAccueil">
+    <ul>
+        <li><a href="#projets" class="active">Projets</a></li>
+        <li><a href="#formations">Formations</a></li>
+        <li><a href="#experiences">Expériences</a></li>
+        <li><a href="#centresInterets">Centres d'intérêts</a></li>
+
+    </ul>
+</div>
+
+<div id="projets" class="tab-content active">
+    <h2>Projets</h2>
+    {{ include('accueil/partials/projets.html.twig') }}
+</div>
+
+<div id="formations" class="tab-content">
+    <h2>Formations</h2>
+    {{ include('accueil/partials/formations.html.twig') }}
+</div>
+
+<div id="experiences" class="tab-content">
+    <h2>Expériences</h2>
+    {{ include('accueil/partials/experiences.html.twig') }}
+</div>
+
+<div id="centresInterets" class="tab-content">
+    <h2>Centre d'intérêts</h2>
+    {{ include('accueil/partials/centresInterets.html.twig') }}
+</div>
+
+<script>
+document.querySelectorAll('.tabsAccueil ul li a').forEach(tab => {
+    tab.addEventListener('click', e => {
+        e.preventDefault();
+
+        document.querySelectorAll('.tabsAccueil ul li a').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+        tab.classList.add('active');
+        document.querySelector(tab.getAttribute('href')).classList.add('active');
+    });
+});
+</script>
+{% endblock %}

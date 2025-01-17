@@ -1,0 +1,37 @@
+
+<h3>Ajouter une Expérience</h3>
+{% if not edit_experience_id %}
+    {{ form_start(form_experience) }}
+    {{ form_widget(form_experience) }}
+    <button type="submit">Ajouter</button>
+    {{ form_end(form_experience) }}
+{% endif %}
+
+<h3>Liste des Expériences</h3>
+<ul>
+    {% if experiences is defined and experiences is not empty %}
+        {% for experience in experiences %}
+            <li>
+                {{ experience.poste }} chez {{ experience.entreprise }}
+
+                {% if experience.id == edit_experience_id %}
+                    {% if form_edit_experience is defined and form_edit_experience is not null %}
+                        {{ form_start(form_edit_experience) }}
+                        {{ form_widget(form_edit_experience) }}
+                        <button type="submit">Enregistrer</button>
+                        <a href="{{ path('app_gestion') }}" class="btn btn-secondary">Annuler</a>
+                        {{ form_end(form_edit_experience) }}
+                    {% else %}
+                        <p>Formulaire d'édition introuvable.</p>
+                    {% endif %}
+                {% else %}
+                    <a href="{{ path('app_experience_edit', {id: experience.id}) }}">Modifier</a>
+                {% endif %}
+
+                <a href="{{ path('app_experience_delete', {id: experience.id}) }}" onclick="return confirm('Supprimer ce experience ?');">Supprimer</a>
+            </li>
+        {% endfor %}
+    {% else %}
+        <p>Aucun experience trouvé.</p>
+    {% endif %}
+</ul>

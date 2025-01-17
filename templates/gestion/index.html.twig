@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion{% endblock %}
+
+{% block body %}
+<h1>Page de Gestion</h1>
+
+
+
+<div class="tabsGestion">
+    <ul>
+        <li><a href="#projets" class="active">Projets</a></li>
+        <li><a href="#formations">Formations</a></li>
+        <li><a href="#experiences">Expériences</a></li>
+        <li><a href="#technologies">Technologies</a></li>
+        <li><a href="#centresInterets">Centres d'intérêts</a></li>
+    </ul>
+</div>
+
+<div id="projets" class="tab-content active">
+    {# <h2>Gérer les Projets</h2> #}
+    {{ include('gestion/partials/projets.html.twig', {
+        projets: projets ?? [], 
+        form_projet: form_projet ?? null, 
+        form_edit_projet: form_edit_projet ?? null, 
+        edit_projet_id: edit_projet_id ?? null
+    }) }}
+</div>
+
+<div id="formations" class="tab-content">
+    {# <h2>Gérer les Formations</h2> #}
+    {{ include('gestion/partials/formations.html.twig', {
+        formations: formations ?? [], 
+        form_formation: form_formation ?? null, 
+        form_edit_formation: form_edit_formation ?? null,
+        edit_formation_id: edit_formation_id ?? null
+
+    }) }}
+</div>
+
+<div id="experiences" class="tab-content">
+    {# <h2>Gérer les Expériences</h2> #}
+    {{ include('gestion/partials/experiences.html.twig', {
+        experiences: experiences ?? [], 
+        form_experience: form_experience ?? null,
+        form_edit_experience: form_edit_experience ?? null,
+        edit_experience_id: edit_experience_id ?? null
+    }) }}
+</div>
+
+<div id="technologies" class="tab-content">
+    {# <h2>Gérer les Technologies</h2> #}
+    {{ include('gestion/partials/technologies.html.twig', {
+        technologies: technologies ?? [], 
+        form_technologie: form_technologie ?? null,
+        form_edit_technologie: form_edit_technologie ?? null,
+        edit_technologie_id: edit_technologie_id ?? null
+    }) }}
+</div>
+
+<div id="centresInterets" class="tab-content">
+    {{ include('gestion/partials/centresInterets.html.twig', {
+        centresInterets: centresInterets ?? [], 
+        form_hobby: form_hobby ?? null,
+        form_edit_hobby: form_edit_hobby ?? null,
+        edit_hobby_id: edit_hobby_id ?? null
+    }) }}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const editProjetsId = "{{ edit_projet_id is not null ? 'true' : 'false' }}";
+    const editFormationsId = "{{ edit_formation_id is not null ? 'true' : 'false' }}";
+    const editExperiencesId = "{{ edit_experience_id is not null ? 'true' : 'false' }}";
+    const editTechnologiesId = "{{ edit_technologie_id is not null ? 'true' : 'false' }}";
+    const editCentresInteretsId = "{{ edit_hobby_id is not null ? 'true' : 'false' }}";
+
+    console.log(editProjetsId)
+    
+    const tabsGestion = document.querySelectorAll('.tabsGestion ul li a');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    function activateTab(tabId) {
+        tabsGestion.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        const tab = document.querySelector(`.tabsGestion ul li a[href="#${tabId}"]`);
+        const content = document.querySelector(`#${tabId}`);
+
+        if (tab && content) {
+            tab.classList.add('active');
+            content.classList.add('active');
+        }
+    }
+
+    if (editProjetsId) {
+        activateTab('projets');
+    } else if (editFormationsId) {
+        activateTab('formations');
+    } else if (editExperiencesId) {
+        activateTab('experiences');
+    } else if (editTechnologiesId) {
+        activateTab('technologies');
+    } else if (editCentresInteretsId) {
+        activateTab('centresInterets');
+    } else {
+        activateTab('projets'); 
+    }
+
+    tabsGestion.forEach(tab => {
+        tab.addEventListener('click', event => {
+            event.preventDefault();
+            activateTab(tab.getAttribute('href').substring(1));
+        });
+    });
+});
+</script>
+
+{% endblock %}

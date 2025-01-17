@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mon Portfolio{% endblock %}</title>
+    <link rel="stylesheet" href="/build/app.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('styles/gestion-centres-interets.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/gestion-technologies.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/base-layout.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/gestion-index.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/accueil-index.css') }}">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ path('app_accueil') }}"><i class="fas fa-home"></i></a></li>
+                <li><a href="{{ path('app_gestion') }}"><i class="fas fa-cogs"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ "now"|date("Y") }} Portfolio</p>
+    </footer>
+</body>
+</html>
