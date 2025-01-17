@@ -8,7 +8,7 @@
 
 ## État d'avancement
 
-Je n'ai malheureusement pas pu entièrement terminer le projet dû à des circonstances que je détaillerais dans la partie Difficultées rencontrées. A l'heure actuelle, un user admin peut créer, modifier et supprimer divers entités (Experience, Formation, Hobby, Profil, Technolgie). Il n'est pas possible dans l'immédiat de créer d'autres comptes admin car la route qui le permet est désactivée.
+Je n'ai malheureusement pas pu entièrement terminer le projet dû à des circonstances que je détaillerais dans la partie Difficultées rencontrées. A l'heure actuelle, un user admin peut créer, modifier et supprimer divers entités (Experience, Formation, Hobby, Profil, Technolgie, Projet). Il n'est pas possible dans l'immédiat de créer d'autres comptes admin car la route qui le permet est désactivée.
 
 ## Difficultés rencontrées et solutions
 
